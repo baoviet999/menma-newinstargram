@@ -43,6 +43,12 @@
         &:not(:last-child) {
             margin-right: 4px;
         }
+        &:first-child {
+            & > svg {
+                width: 13px;
+                height: 13px;
+            }
+        }
         & > svg,
         & > img {
             width: 20px;
@@ -88,14 +94,29 @@
                 object-fit: cover;
             }
         }
-
+        // &--mute {
+        //     position: absolute;
+        //     width: 30px;
+        //     height: 30px;
+        //     background-color: rgba(255, 255, 255, 0.15);
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: center;
+        //     border-radius: 50%;
+        //     top : -50px ;
+        //     right: 10px;
+        //     cursor: pointer;
+        //     & > svg {
+        //         fill: #fff;
+        //     }
+        // }
         &--choose {
             flex: 1;
             padding: 5px;
             display: flex;
             align-items: center;
             height: 40px;
-            background-color: rgba(255, 255, 255, .15);
+            background-color: rgba(255, 255, 255, 0.15);
             border-radius: 999px;
             margin-right: 5px;
             & > span {
@@ -112,7 +133,9 @@
             justify-content: center;
             background-color: #fff;
             border-radius: 50%;
-            & > img {
+            cursor: pointer;
+            & > img,
+            & > svg {
                 width: 50%;
                 height: 50%;
                 object-fit: cover;

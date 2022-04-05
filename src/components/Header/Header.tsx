@@ -1,19 +1,18 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../App/hook';
-//Context
-import { authContext } from '../../Context/authContext';
-import { selectUser } from '../../feature/auth/authSlice';
-import { postActions } from '../../feature/CreatePost/postSlice';
 //Img
 import { IoCloseCircle } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../App/hook';
 import logo from '../../assets/images/insta.png';
 import { ReactComponent as Search } from '../../assets/svg/search.svg';
-import SearchDrop from '../DropModal/SearchDrop/SearchDrop';
+//Context
+import { authContext } from '../../Context/authContext';
 import { ACCOUNT_ACTION, HEADER_ICON } from '../../data/HeaderIcon';
-
+import { selectUser } from '../../feature/auth/authSlice';
+import { postActions } from '../../feature/CreatePost/postSlice';
+import SearchDrop from '../DropModal/SearchDrop/SearchDrop';
 import './Header.scss';
-import Toast from '../Toast/Toast';
+
 
 const Header = () => {
     // handle open account list
@@ -66,10 +65,13 @@ const Header = () => {
         }
     };
     // handle các option trong accound list
+    const [loading , setLoading ] = useState(false);
     const handleOption = (options: string) => {
         switch (options) {
             case 'logout':
+                setLoading(true)
                 logOut(user.data._id);
+                setLoading(false)
                 break;
             case 'account':
                 navigate('/profile/post');

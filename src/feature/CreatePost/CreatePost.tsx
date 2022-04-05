@@ -1,6 +1,7 @@
 import 'emoji-mart/css/emoji-mart.css';
 import React, { useContext, useState } from 'react';
 import FileBase from 'react-file-base64';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { useAppDispatch, useAppSelector } from '../../App/hook';
 import { ReactComponent as AddImg } from '../../assets/svg/AddImg.svg';
 import { ReactComponent as ChooseImg } from '../../assets/svg/ChooseImg.svg';
@@ -57,27 +58,29 @@ const CreatePost = () => {
             ? Toast({ message: 'Create post successfully!!!' })
             : Toast({ message: data.message, a: 'error' });
         setUploading(false);
-        data?.success && dispatch(postActions.setModal(false)) 
+        data?.success && dispatch(postActions.setModal(false));
     };
     //Header
     let header;
     postForm.image !== ''
-        ? (header = (
-              <div className='create-post__nextstep create-post__header'>
-                  <Prevbtn onClick={() => setActive(false)} />
-                  <span>Cắt</span>
-                  {!active ? (
-                      <span onClick={() => setActive(!active)}>Tiếp</span>
-                  ) : (
-                      <span onClick={handleCreatePost}>Chia sẻ {uploading && 'laodinggggggg'}</span>
-                  )}
-              </div>
-          ))
-        : (header = (
-              <div className='create-post__header'>
-                  <span>Tạo bài viết mới</span>
-              </div>
-          ));
+    ? (header = (
+            <div className='create-post__nextstep create-post__header'>
+                <Prevbtn onClick={() => setActive(false)} />
+                <span>Cắt</span>
+                {!active ? (
+                    <span onClick={() => setActive(!active)}>Tiếp</span>
+                ) : (
+                    <span onClick={handleCreatePost}>
+                        {uploading ? <ClipLoader color='#833AB4' size={20} /> : 'Chia sẻ'}
+                    </span>
+                )}
+            </div>
+        ))
+    : (header = (
+            <div className='create-post__header'>
+                <span>Tạo bài viết mới</span>
+            </div>
+        ));
     // body
 
     const mainUser = useAppSelector(selectUser);

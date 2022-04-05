@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import BoderLinear from '../BorderLinear/BoderLinear';
 import user1 from '../../assets/images/user1.jpg';
 import { ReactComponent as Options } from '../../assets/svg/Option.svg';
@@ -29,7 +29,7 @@ interface PostProps {
             comment: string[];
             user: {
                 username: string;
-                id : string
+                id: string;
             }[];
         };
     };
@@ -49,9 +49,7 @@ const Posts = ({ data }: PostProps) => {
 
     const { handleComment } = useContext(postContext);
 
-    const userHasLOg = useAppSelector(selectUser)
-    console.log("userHasLOg: ", userHasLOg);
-
+    const userHasLOg = useAppSelector(selectUser);
 
     const handleSubmitComment = async () => {
         const newPost = await handleComment({
@@ -59,9 +57,11 @@ const Posts = ({ data }: PostProps) => {
             userCommentId: userHasLOg.data._id,
             postId: data._id,
         });
+        setCommentForm('');
     };
-    console.log(data);
     const { commentList } = data;
+
+    const inputRef = useRef<any>(null);
 
     return (
         <div className='post'>
@@ -116,7 +116,11 @@ const Posts = ({ data }: PostProps) => {
                     <p>{data.title}</p>
                 </div>
                 <div className='post__totalcomment'>
-                    <span>Xem tất cả 47,689 bình luận</span>
+                    <span>
+                        {commentList && commentList.user.length <= 0
+                            ? 'Không có bình luận để hiển thị'
+                            : `Xem tất cả ${commentList?.user.length} bình luận`}
+                    </span>
                 </div>
                 <div className='post__newcomment'>
                     {commentList?.comment.slice(-2).map((item, idx) => (
@@ -138,9 +142,17 @@ const Posts = ({ data }: PostProps) => {
                     <CommentLogo />
                 </div>
                 <div className='post__comment--input'>
-                    <input type='text' value={commentForm} onChange={(e) => setCommentForm(e.target.value)} />
+                    <input
+                        ref={inputRef}
+                        type='text'
+                        value={commentForm}
+                        onChange={(e) => setCommentForm(e.target.value)}
+                    />
                 </div>
-                <div className='post__comment--submit' onClick={handleSubmitComment}>
+                <div
+                    className={`post__comment--submit ${commentForm !== '' && 'active'}`}
+                    onClick={handleSubmitComment}
+                >
                     Đăng
                 </div>
             </div>

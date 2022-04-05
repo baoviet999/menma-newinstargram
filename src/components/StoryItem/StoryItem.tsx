@@ -1,15 +1,11 @@
 import React from 'react';
-import './StoryItem.scss';
-import BorderLinear from '../BorderLinear/BoderLinear';
-
-import story from '../../assets/images/story.jpg';
-import user from '../../assets/images/user-test.jpg';
-
-import video from '../../assets/Videos/video1.mp4';
-
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import VideoThumbnail from 'react-video-thumbnail';
+import user from '../../assets/images/user-test.jpg';
+import './StoryItem.scss';
+
+
 interface StoryItemProps {
     isFirst?: boolean;
     item?: any;

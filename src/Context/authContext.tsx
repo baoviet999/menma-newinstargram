@@ -32,11 +32,8 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     };
 
 
-    
-
     const logOut = async (id: string) => {
         const today = new Date();
-        console.log(today);
         const data = await axios.put(`${URL}/auth/${id}`, { timeLogOut: today });
         dispatch(authActions.logout());
         navigate('/home');
@@ -49,8 +46,8 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem(TOKEN, data.data.data);
             await checkUser();
             return data.data;
-        } catch (error) {
-            console.log(error);
+        } catch (error : any) {
+            return error.response.data
         }
     };
 

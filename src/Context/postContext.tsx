@@ -72,10 +72,6 @@ const PostContextProveider = ({ children }: { children: ReactNode }) => {
     };
 
     const handleComment = async ({ newComment, userCommentId, postId }: CommentForm) => {
-        console.log({
-            newComment,
-            userCommentId,
-        });
         try {
             const { data }: { data: ServerResponse<DataPostResponse> } = await axios.put(
                 `${URL}/posts/comment/${postId}`,

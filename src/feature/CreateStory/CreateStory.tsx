@@ -1,32 +1,45 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Base64 from 'react-file-base64';
 import { AiFillStar } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { useAppSelector } from '../../App/hook';
 import gallery from '../../assets/images/gallery.png';
+import logo from '../../assets/images/logo.png';
 import more from '../../assets/images/more.png';
 import next from '../../assets/images/next.png';
 import next1 from '../../assets/images/next1.png';
 import star from '../../assets/images/star.png';
-import userAvt from '../../assets/images/user-test.jpg';
-import logo from '../../assets/images/logo.png';
-import Base64 from 'react-file-base64';
 import { ReactComponent as Close } from '../../assets/svg/CloseStory.svg';
-import './CreateStore.scss';
-import { useAppSelector } from '../../App/hook';
-import { selectUser } from '../auth/authSlice';
+import { ReactComponent as UnMute } from '../../assets/svg/Unmute.svg';
+import { ReactComponent as Mute } from '../../assets/svg/Mute.svg';
 import { storyContext } from '../../Context/storyContext';
-import { useNavigate } from 'react-router-dom';
-
+import { selectUser } from '../auth/authSlice';
+import './CreateStore.scss';
 const CreateStory = () => {
     const [selectedVideo, setSelectedVideo] = useState('');
     const user = useAppSelector(selectUser);
     const { createStory } = useContext(storyContext);
     const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(false);
     const handlePostStory = async () => {
+        setLoading(true);
         await createStory({
             video: selectedVideo,
             image: '',
         });
+        setLoading(false);
         navigate('/home');
     };
+
+    const [mute , setMute] = useState(true);
+    useEffect(() => {
+        const video = document.querySelector('.story-video') as HTMLVideoElement;
+        if (video) {
+            mute ? (video.muted = true) : (video.muted = false);
+        }
+    }, [mute]);
 
     let body;
     selectedVideo !== ''
@@ -59,7 +72,6 @@ const CreateStory = () => {
     const [videoDuration, setVideoDuration] = useState(0);
     useEffect(() => {
         const video = document.querySelector('.story-video') as HTMLVideoElement;
-
         if (video)
             video.onloadeddata = (e) => {
                 setVideoDuration(video.duration);
@@ -77,13 +89,13 @@ const CreateStory = () => {
             <div className='create-story__inner'>
                 <div className='create-story__header'>
                     <div className='create-story__header--left'>
-                        <div className='create-story__icon'>
+                        <div className='create-story__icon' onClick={() => setSelectedVideo('')}>
                             <img src={next} alt='' />
                         </div>
                     </div>
                     <div className='create-story__header--right'>
-                        <div className='create-story__icon'>
-                            <span>Aa</span>
+                        <div className='create-story__icon' onClick={()=> setMute(!mute)}>
+                            {selectedVideo ? (!mute ? <UnMute/> : <Mute/>) :<span>Aa</span>}
                         </div>
                         <div className='create-story__icon'>
                             <img src={gallery} alt='' />
@@ -98,6 +110,7 @@ const CreateStory = () => {
                 </div>
                 {body}
                 <div className='create-story__footer'>
+                    
                     {selectedVideo && (
                         <div className='create-story__progress'>
                             <div className='create-story__progress--item'>
@@ -124,7 +137,7 @@ const CreateStory = () => {
                         <span>Bạn thân</span>
                     </div>
                     <div className='create-story__footer--next' onClick={handlePostStory}>
-                        <img src={next1} alt='' />
+                        {!loading ? <img src={next1} alt='' /> : <ClipLoader size={20} color='#000' />}
                     </div>
                 </div>
             </div>

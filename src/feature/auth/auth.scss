@@ -118,6 +118,10 @@
         border-radius: 4px;
         margin-top: 5px;
         cursor: pointer;
+        transition : background 0.2s ease-in-out ;
+        &.active{
+            background-color: $secondary-blue
+        }
     }
     &__or {
         width: 100%;

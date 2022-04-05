@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import download1 from '../../../../assets/images/appstore.png';
 import download2 from '../../../../assets/images/google.png';
 import logo from '../../../../assets/images/insta.png';
+import Toast from '../../../../components/Toast/Toast';
 import { authContext } from '../../../../Context/authContext';
+import ClipLoader from 'react-spinners/ClipLoader';
 import './Login.scss';
 
 const Login = () => {
@@ -21,14 +23,18 @@ const Login = () => {
     };
 
     const { userLogin } = useContext(authContext);
-    
+    const { username, password } = loginForm;
+    const [loading, setLoading] = useState(false);
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const { username, password } = loginForm;
-        await userLogin({
+        setLoading(true);
+        const data: any = await userLogin({
             username,
             password,
         });
+        setLoading(false);
+        console.log(data);
+        !data.success && Toast({ message: 'Sai tên hay mật khẩu gì kìa :v', a: 'error' });
     };
 
     return (
@@ -57,8 +63,8 @@ const Login = () => {
                                 name='password'
                             />
                         </div>
-                        <button type='submit' className='auth__btn'>
-                            Đăng nhập
+                        <button type='submit' className={`auth__btn ${username && password && 'active'}`}>
+                            {loading ? <ClipLoader color={'#FFDC80'} size={20} /> : ' Đăng nhập'}
                         </button>
                     </form>
                     <div className='auth__or'>

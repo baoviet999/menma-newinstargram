@@ -6,7 +6,6 @@ const UploadImg = () => {
     
 
     const handleSubmit = (e: any) => {
-        console.log('submit');
         e.preventDefault();
         uploadImage(selectImg);
     };
