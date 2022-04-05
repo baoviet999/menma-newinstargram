@@ -2,6 +2,7 @@ import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import 'swiper/css';
 import LandingPage from './components/layout/LandingPage/LandingPage';
 import ProfilePost from './components/layout/ProfilePost/ProfilePost';
@@ -23,7 +24,7 @@ function App() {
     const location = useLocation();
 
     return (
-        <AnimatePresence>
+        <AnimatePresence><ToastContainer />
             <Routes location={location} key={location.pathname}>
                 <Route path='/' element={<LandingPage />} />
                 <Route path='auth' element={<Auth />}>
