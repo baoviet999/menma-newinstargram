@@ -64,7 +64,7 @@ const Home = () => {
             <Header />
             <div className='grid wide'>
                 <div className='row'>
-                    <div className='col l-7-5'>
+                    <div className='col l-7-5 m-12 c-12'>
                         <div className='main'>
                             {postLoading && (
                                 <div className='home__loader'>
@@ -86,7 +86,7 @@ const Home = () => {
                             )}
                         </div>
                     </div>
-                    <div className='col l-4-5'>
+                    <div className='col l-4-5 m-12 c-0'>
                         <div className='nav'>
                             <div className='nav__user'>
                                 <div className='nav__user--avt'>

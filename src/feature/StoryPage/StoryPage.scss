@@ -1,3 +1,4 @@
+@use '../../scss/' as * ;
 .story-page {
     position: fixed;
     inset: 0;
@@ -13,16 +14,16 @@
         transform: translateY(-50%);
         width: 25px;
         height: 25px;
-        border-radius: 50% ;
+        border-radius: 50%;
         display: flex;
         align-items: center;
-        justify-content:center ;
-        background-color: rgba(255,255,255,0.3);
-        transition : background 0.2s ease-in-out ;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.3);
+        transition: background 0.2s ease-in-out;
         cursor: pointer;
-        &--left{
+        &--left {
             left: -40px;
-            transform :translateY(-50%) rotate(180deg)
+            transform: translateY(-50%) rotate(180deg);
         }
         &--right {
             right: -40px;
@@ -39,9 +40,13 @@
         background-color: #fff;
         position: relative;
         border-radius: 13px;
-        &:hover{
-            .story-page__btn{
-                background-color : rgba(255,255,255,0.5)
+        @include menma {
+            width: 80%;
+            height: 90%;
+        }
+        &:hover {
+            .story-page__btn {
+                background-color: rgba(255, 255, 255, 0.5);
             }
         }
         & > video {
@@ -71,21 +76,21 @@
         align-items: center;
         justify-content: space-between;
         height: 2px;
-        
+
         &-item {
             flex: 1;
             height: 100%;
             &:not(:last-child) {
                 margin-right: 3px;
-            };
-            background-color: rgba(255,255,255,0.35);
-            border-radius: 20px ;
+            }
+            background-color: rgba(255, 255, 255, 0.35);
+            border-radius: 20px;
         }
         &-bar {
-            background-color :#fff;
+            background-color: #fff;
             height: 100%;
             width: 0%;
-            &--finish{
+            &--finish {
                 width: 100%;
             }
             &--active {
@@ -127,7 +132,7 @@
         margin-left: 15px;
         cursor: pointer;
     }
-    &__logo{
+    &__logo {
         position: absolute;
         top: 17px;
         left: 17px;
@@ -140,12 +145,11 @@
     }
 }
 
-
 @keyframes progress {
     0% {
         width: 0%;
     }
-    100%{
+    100% {
         width: 100%;
     }
 }

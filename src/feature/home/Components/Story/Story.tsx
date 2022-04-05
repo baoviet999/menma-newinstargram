@@ -22,28 +22,71 @@ const Story = () => {
 
     const storyList: any = useAppSelector(selectAllStory);
     const storyListReverse = [...storyList].reverse();
+    let el = document.getElementById('result');
+
+    const [width, setWidth] = useState(7.5);
+
+    useEffect(() => {
+        window.addEventListener(
+            'resize',
+            function () {
+                console.log(window.innerWidth);
+                window.innerWidth < 700 ? setWidth(5) : setWidth(7.5);
+            },
+            true
+        );
+    }, []);
+
     return (
         <div className='story'>
-            <Swiper
-                grabCursor
-                modules={[Navigation]}
-                navigation={{
-                    nextEl: '.story__next',
-                    prevEl: '.story__prev',
-                }}
-                spaceBetween={10}
-                slidesPerView={7.5}
-            >
+            <div className='story__inner'>
                 {loading ? (
-                    <>
+                    <Swiper
+                        grabCursor
+                        modules={[Navigation]}
+                        navigation={{
+                            nextEl: '.story__next',
+                            prevEl: '.story__prev',
+                        }}
+                        spaceBetween={10}
+                        slidesPerView={7.5}
+                        loopFillGroupWithBlank={true}
+                        breakpoints={{
+                            600: {
+                                slidesPerView: 7.5,
+                            },
+                            960: {
+                                slidesPerView: 7.5,
+                            },
+                        }}
+                    >
                         {Array.from(Array(10)).map((item, idx) => (
                             <SwiperSlide key={idx}>
                                 <StorySelekon />
                             </SwiperSlide>
                         ))}
-                    </>
+                    </Swiper>
                 ) : (
-                    <>
+                    <Swiper
+                        grabCursor
+                        modules={[Navigation]}
+                        navigation={{
+                            nextEl: '.story__next',
+                            prevEl: '.story__prev',
+                        }}
+                        spaceBetween={7.5}
+                        slidesPerView={8}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 5,
+                                spaceBetween: 20,
+                            },
+                            640: {
+                                slidesPerView: 7.5,
+                                spaceBetween: 40,
+                            },
+                        }}
+                    >
                         <SwiperSlide>
                             <StoryItem isFirst={true} />
                         </SwiperSlide>
@@ -52,9 +95,9 @@ const Story = () => {
                                 <StoryItem item={item} />
                             </SwiperSlide>
                         ))}
-                    </>
+                    </Swiper>
                 )}
-            </Swiper>
+            </div>
             <div className='story__btn story__next'>
                 <div className='story__btn-icon'>
                     <MdOutlineNavigateNext />

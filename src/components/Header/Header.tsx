@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../App/hook';
 import logo from '../../assets/images/insta.png';
 import { ReactComponent as Search } from '../../assets/svg/search.svg';
+import { ReactComponent as Camera } from '../../assets/svg/Camera.svg';
+import { ReactComponent as Mess } from '../../assets/svg/Mess.svg';
 //Context
 import { authContext } from '../../Context/authContext';
 import { ACCOUNT_ACTION, HEADER_ICON } from '../../data/HeaderIcon';
@@ -12,7 +14,6 @@ import { selectUser } from '../../feature/auth/authSlice';
 import { postActions } from '../../feature/CreatePost/postSlice';
 import SearchDrop from '../DropModal/SearchDrop/SearchDrop';
 import './Header.scss';
-
 
 const Header = () => {
     // handle open account list
@@ -65,13 +66,13 @@ const Header = () => {
         }
     };
     // handle các option trong accound list
-    const [loading , setLoading ] = useState(false);
+    const [loading, setLoading] = useState(false);
     const handleOption = (options: string) => {
         switch (options) {
             case 'logout':
-                setLoading(true)
+                setLoading(true);
                 logOut(user.data._id);
-                setLoading(false)
+                setLoading(false);
                 break;
             case 'account':
                 navigate('/profile/post');
@@ -85,14 +86,36 @@ const Header = () => {
         checkUser();
     }, []);
 
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {});
+    const updateProgress = () => {
+        const windowHeight: number = window.innerHeight;
+        const documentFullHeight: number = document.body.clientHeight;
+        const scroll: number = window.scrollY;
+        const pecentsScrolled: number = (scroll / (documentFullHeight - windowHeight)) * 100;
+        setProgress(pecentsScrolled);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', updateProgress);
+        return () => window.removeEventListener('scroll', updateProgress);
+    }, []);
+
     return (
         <div className='header'>
-            <div className='grid wide'>
+            <div className='grid wide header__container'>
                 <div className='row'>
-                    <div className='col l-7-5'>
+                    <div className='col l-7-5 m-7 c-12'>
                         <div className='header__left'>
+                            <div className='header__mobile'>
+                                <Camera />
+                            </div>
                             <div className='header__logo' onClick={() => navigate('/home')}>
                                 <img src={logo} alt='' />
+                            </div>
+                            <div className='header__mobile'>
+                                <Mess />
                             </div>
                             <div className={`header__input ${activeInput ? 'active' : ''}`}>
                                 <Search />
@@ -104,7 +127,7 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='col l-4-5'>
+                    <div className='col l-4-5 m-5 c-12'>
                         <div className='header__right'>
                             {HEADER_ICON.map((item, idx) => (
                                 <div
@@ -141,6 +164,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+            <div className='header__indicator' style={{ width: `${progress}%` }}></div>
         </div>
     );
 };
