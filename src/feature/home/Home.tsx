@@ -28,7 +28,12 @@ const Home = () => {
     useEffect(() => {
         getPost();
     }, []);
-
+    useEffect(() => {
+        const timer = setInterval(() => {
+            getPost();
+        }, 6000);
+        return () => clearInterval(timer);
+    }, []);
     // post state
     // đảo ngược cho bài post mới nhất lên trên
     const reStatusData = [...posts].reverse();
@@ -45,7 +50,7 @@ const Home = () => {
     }, []);
     // useEffect(() => {
     //     (async () => {
-            
+
     //         // const data: any = await getAllUser();
     //         // setUsers(data.data);
     //     })();
