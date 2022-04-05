@@ -1,0 +1,117 @@
+@use '../../../../scss' as *;
+.post {
+    &-options {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    &-option,
+    &-option__place {
+        width: 100%;
+        padding: 0 17px;
+        border-bottom: 1px solid $border-color;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        height: fit-content;
+        &__wrap {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 45px;
+            cursor: pointer;
+            &.active {
+                & > span {
+                    font-weight: 600;
+                }
+                ~ .post-option__dropdown {
+                    display: flex;
+                }
+                #dropdown,
+                #dropdown-a {
+                    transform: rotate(0deg);
+                    padding: 10px 0px 9px 11px;
+                }
+            }
+            & > input {
+                width: 90%;
+                padding: 5px 5px 5px 0;
+                outline: none;
+                border: none;
+                background-color: transparent;
+                line-height: 24px;
+                font-size: 15px;
+                color: $text-color;
+                font-weight: 500;
+                &::placeholder {
+                    color: $text-sub;
+                    font-weight: 400;
+                }
+            }
+            & > svg {
+                fill: $text-color;
+            }
+        }
+        &__dropdown {
+            display: none;
+            // display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 11px;
+            color: $text-sub;
+            font-weight: 400;
+            & > p {
+                line-height: 16px;
+                letter-spacing: 0.5;
+            }
+            &--content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                margin: 10px 0 20px 0;
+                & > img {
+                    width: 44px;
+                    height: 44px;
+                    object-fit: cover;
+                    margin-right: 5px;
+                    border-radius: 4px;
+                }
+                & > input {
+                    height: 44px;
+                    padding: 4px 12px;
+                    background-color: transparent;
+                    border: 1px solid $border-color;
+                    flex: 1;
+                    border-radius: 4px;
+                }
+            }
+            &--turn {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 10px 0;
+                & > span {
+                    color :$text-color ;
+                    font-weight: 400;
+                    font-size: 16px;
+                }
+            }
+
+        }
+    }
+}
+
+#dropdown,
+#dropdown-a {
+    transform: rotate(180deg);
+    padding: 10px 11px 9px 0px;
+    cursor: pointer;
+}

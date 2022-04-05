@@ -1,0 +1,80 @@
+@use '../../scss' as *;
+.story-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 4px;
+    position: relative;
+    & > span {
+        letter-spacing: 0.01em;
+        max-width: 74px;
+        font-size: 12px;
+        line-height: 16px;
+        color: $text-color;
+        margin-top: 6px;
+    }
+    img {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        border-radius: 50%;
+        position: relative;
+        z-index: 12;
+        
+    }
+    &__plus {
+        position: absolute;
+        bottom: 18px;
+        right: 4px;
+        width: 23px;
+        height: 23px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0095f6;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        z-index: 13;
+        & > svg {
+            fill: #fff;
+        }
+    }
+}
+.react-thumbnail-generator {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    // overflow: hidden;
+    position: relative;
+    &::after {
+            position: absolute;
+            content: '';
+            width: 116%;
+            height: 116%;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgb(247, 119, 55);
+            background: linear-gradient(
+                90deg,
+                rgba(247, 119, 55, 1) 35%,
+                rgba(248, 138, 68, 1) 47%,
+                rgba(225, 48, 108, 1) 100%
+            );
+            z-index: 2;
+        }
+        &::before {
+            position: absolute;
+            content: '';
+            width: 106.8%;
+            height: 106.8%;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            z-index: 3;
+        }
+}

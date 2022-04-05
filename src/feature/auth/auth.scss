@@ -1,0 +1,277 @@
+@use '../../scss/index.scss' as *;
+.auth {
+    &__wrap {
+        width: 100%;
+        background-color: $main-bg;
+        height: 130vh;
+        padding-top: 30px;
+        @include menma() {
+            height: 100vh;
+            padding-top: 0;
+            overflow: hidden;
+        }
+        // @include mobile(){
+        //     padding: 0;
+        // }
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+    @include menma() {
+        height: 75vh;
+    }
+    &__banner {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-position: 30px 0;
+        &-img {
+            margin: 25px 25px 25px 0;
+            & > img {
+                object-fit: cover;
+                animation: imgLoad 0.3s ease-in-out;
+            }
+        }
+    }
+    &__form {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        height: 100%;
+        margin-top: 25px;
+        @include menma() {
+            justify-content: center;
+            height: 145%;
+            margin-top: 0;
+        }
+        @include mobile() {
+            height: 120%;
+        }
+    }
+    &__inner {
+        width: 350px;
+        @include mobile() {
+            width: 100%;
+        }
+    }
+    &__top {
+        width: 100%;
+        height: 65%;
+        border: 1px solid $border-color;
+        padding: 0 43px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: $white-bg;
+        @include mobile() {
+            background: transparent;
+            border: none;
+        }
+    }
+    &__logo {
+        width: 100%;
+        height: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & > img {
+            object-fit: cover;
+        }
+    }
+    &__login {
+        width: 100%;
+    }
+    &__input {
+        width: 100%;
+        margin-bottom: 5px;
+        &:nth-child(3) {
+            margin-bottom: 15px !important;
+        }
+        & > input {
+            width: 100%;
+            padding: 11px 0 9px 10px;
+            background-color: $main-bg;
+            color: $text-color;
+            border: 0.5px solid $border-color;
+            border-radius: 4px;
+            text-overflow: ellipsis;
+            &::placeholder {
+                font-size: 12px;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    &__btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 0;
+        background-color: $blue-bg;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: #fff;
+        border-radius: 4px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+    &__or {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin: 20px 0;
+        & > span {
+            padding: 0 10px;
+            background-color: $white-bg;
+            margin: 0 18px;
+            text-transform: uppercase;
+            line-height: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            color: #8e8e8e;
+            @include mobile() {
+                background-color: $main-bg;
+            }
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 0.1px;
+            background: $border-color;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    &__facebook {
+        color: $main-blue;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 5px 9px;
+        cursor: pointer;
+        & > svg {
+            margin-right: 3px;
+            font-size: 20px;
+        }
+    }
+    &__fogot {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        line-height: 16px;
+        margin-top: 12px;
+        color: #00376b;
+        cursor: pointer;
+    }
+    &__bottom {
+        width: 100%;
+        height: 10%;
+        background-color: $white-bg;
+        border: 1px solid $border-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        @include mobile() {
+            background-color: transparent;
+            border: none;
+        }
+        & > p {
+            font-size: 13px;
+            color: $text-color;
+            & > a {
+                font-weight: 600;
+                color: $secondary-blue;
+            }
+        }
+    }
+    &__end {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        & > span {
+            display: block;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        &-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & > img {
+                width: 37%;
+                object-fit: cover;
+                margin: 0 3px;
+            }
+        }
+    }
+    &__footer {
+        margin-top: 25px;
+        &-items {
+            display: flex !important;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        &-item {
+            width: fit-content;
+            padding: 3px 8px;
+            & > a {
+                color: $text-sub;
+                font-size: 11.5px;
+            }
+        }
+        &-bt {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            & > li {
+                width: fit-content;
+                padding: 3px 8px;
+                & > a {
+                    color: $text-sub;
+                    font-size: 12.5px;
+                }
+            }
+        }
+    }
+    &__loader {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        height: 100vh;
+    }
+}
+
+@keyframes imgLoad {
+    from {
+        opacity: 0;
+        filter: blur(0);
+    }
+    to {
+        opacity: 1;
+        filter: blur(1);
+    }
+}

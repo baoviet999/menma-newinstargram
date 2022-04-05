@@ -1,0 +1,11 @@
+.profile-post{
+    width: 100%;
+    &__img{
+        width: 100%;
+        & > img{
+            width: 295px;
+            height: 295px;
+            object-fit: cover;
+        }
+    }
+}
