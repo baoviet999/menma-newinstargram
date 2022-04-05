@@ -74,8 +74,8 @@ const Story = () => {
                             nextEl: '.story__next',
                             prevEl: '.story__prev',
                         }}
-                        spaceBetween={7.5}
-                        slidesPerView={8}
+                        spaceBetween={15}
+                        slidesPerView={7.5}
                         breakpoints={{
                             320: {
                                 slidesPerView: 5,
