@@ -1,18 +1,17 @@
 import React, { useContext, useEffect } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Header from '../../components/Header/Header';
-import './Profile.scss';
-
-import userAvt from '../../assets/images/user-test.jpg';
-import { ReactComponent as ProfileSetting } from '../../assets/svg/ProfileSetting.svg';
+import { NavLink, Outlet } from 'react-router-dom';
+import { useAppSelector } from '../../App/hook';
 import { ReactComponent as PostMenu } from '../../assets/svg/PostMenu.svg';
+import { ReactComponent as ProfileSetting } from '../../assets/svg/ProfileSetting.svg';
 import { ReactComponent as SaveMenu } from '../../assets/svg/SaveMenu.svg';
 import { ReactComponent as TagMenu } from '../../assets/svg/TagMenu.svg';
-import { NavLink, Outlet } from 'react-router-dom';
-import { FOOTER_ITEM } from '../../data/footerItem';
+import Header from '../../components/Header/Header';
 import { authContext } from '../../Context/authContext';
-import { useAppSelector } from '../../App/hook';
+import { FOOTER_ITEM } from '../../data/footerItem';
 import { selectUser } from '../auth/authSlice';
+import './Profile.scss';
+
 const Profile = () => {
     const { checkUser } = useContext(authContext);
     const { data } = useAppSelector(selectUser);

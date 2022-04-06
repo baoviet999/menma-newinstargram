@@ -51,7 +51,8 @@ const Posts = ({ data }: PostProps) => {
 
     const userHasLOg = useAppSelector(selectUser);
 
-    const handleSubmitComment = async () => {
+    const handleSubmitComment = async (e: any) => {
+        e.preventDefault();
         const newPost = await handleComment({
             newComment: commentForm,
             userCommentId: userHasLOg.data._id,
@@ -137,7 +138,7 @@ const Posts = ({ data }: PostProps) => {
                     <TimeAgo date={data.createdAt} />
                 </div>
             </div>
-            <div className='post__comment'>
+            <form className='post__comment' onSubmit={handleSubmitComment}>
                 <div className='post__comment--logo'>
                     <CommentLogo />
                 </div>
@@ -149,13 +150,13 @@ const Posts = ({ data }: PostProps) => {
                         onChange={(e) => setCommentForm(e.target.value)}
                     />
                 </div>
-                <div
+                <button
+                    type='submit'
                     className={`post__comment--submit ${commentForm !== '' && 'active'}`}
-                    onClick={handleSubmitComment}
                 >
                     Đăng
-                </div>
-            </div>
+                </button>
+            </form>
         </div>
     );
 };

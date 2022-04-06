@@ -17,8 +17,6 @@ import Story from './Components/Story/Story';
 import './Home.scss';
 
 const Home = () => {
-    const [loading, setLoading] = useState(false);
-
     const openCreatePost = useAppSelector(selectOpenCreatePost);
     const { getPost } = useContext(postContext);
     const mainUser = useAppSelector(selectUser);
@@ -31,7 +29,7 @@ const Home = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             getPost();
-        }, 6000);
+        }, 5000);
         return () => clearInterval(timer);
     }, []);
     // post state
@@ -48,13 +46,6 @@ const Home = () => {
             await axios.put(`${URL}/auth/${data.data.data._id}`, { timeLogOut: '' });
         })();
     }, []);
-    // useEffect(() => {
-    //     (async () => {
-
-    //         // const data: any = await getAllUser();
-    //         // setUsers(data.data);
-    //     })();
-    // }, [users]);
 
     // lay ra tat ca user ngoai tru main user
     const excepUser = users.filter((x: any) => x._id !== mainUser.data._id);
