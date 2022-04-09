@@ -6,13 +6,14 @@ import { ToastContainer } from 'react-toastify';
 import 'swiper/css';
 import Router from './Router';
 import './scss/index.scss';
-
+import Tab from './feature/Tab/Tab'
 function App() {
     return (
         <AnimatePresence>
             <ToastContainer />
             <Router />
         </AnimatePresence>
+        // <Tab/>
     );
 }
 

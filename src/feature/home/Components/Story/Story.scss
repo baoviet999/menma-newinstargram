@@ -25,6 +25,9 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        @include mobile{
+            transform: translateY(-68%);
+        }
         width: 40px;
         height: 40px;
         cursor: pointer;
@@ -54,6 +57,9 @@
     &__prev {
         left: 0px;
         transform: translateY(-50%) rotate(180deg);
+        @include mobile {
+            transform: translateY(-68%) rotate(180deg);
+        }
     }
 }
 

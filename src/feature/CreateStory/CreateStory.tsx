@@ -33,7 +33,7 @@ const CreateStory = () => {
         navigate('/home');
     };
 
-    const [mute , setMute] = useState(true);
+    const [mute, setMute] = useState(true);
     useEffect(() => {
         const video = document.querySelector('.story-video') as HTMLVideoElement;
         if (video) {
@@ -77,13 +77,15 @@ const CreateStory = () => {
                 setVideoDuration(video.duration);
             };
     }, [selectedVideo]);
-
+    const handleClose = () => {
+        navigate('/home')
+    }
     return (
         <div className='create-story'>
             <div className='story-page__logo'>
                 <img src={logo} alt='' />
             </div>
-            <div className='story-page__close' onClick={() => navigate('/home')}>
+            <div className='story-page__close' onClick={()=> navigate('/home')}>
                 <Close />
             </div>
             <div className='create-story__inner'>
@@ -94,8 +96,8 @@ const CreateStory = () => {
                         </div>
                     </div>
                     <div className='create-story__header--right'>
-                        <div className='create-story__icon' onClick={()=> setMute(!mute)}>
-                            {selectedVideo ? (!mute ? <UnMute/> : <Mute/>) :<span>Aa</span>}
+                        <div className='create-story__icon' onClick={() => setMute(!mute)}>
+                            {selectedVideo ? !mute ? <UnMute /> : <Mute /> : <span>Aa</span>}
                         </div>
                         <div className='create-story__icon'>
                             <img src={gallery} alt='' />
@@ -110,7 +112,6 @@ const CreateStory = () => {
                 </div>
                 {body}
                 <div className='create-story__footer'>
-                    
                     {selectedVideo && (
                         <div className='create-story__progress'>
                             <div className='create-story__progress--item'>

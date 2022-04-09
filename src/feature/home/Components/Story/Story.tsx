@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './Story.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import StoryItem from '../../../../components/StoryItem/StoryItem';
+import { MdOutlineNavigateNext } from 'react-icons/md';
 import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
-import { MdOutlineNavigateNext } from 'react-icons/md';
-import { storyContext } from '../../../../Context/storyContext';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { useAppSelector } from '../../../../App/hook';
-import { selectAllStory } from '../../../StoryPage/storySlice';
+import StoryItem from '../../../../components/StoryItem/StoryItem';
 import StorySelekon from '../../../../components/StoryItem/StorySelekon/StorySelekon';
+import { storyContext } from '../../../../Context/storyContext';
+import { selectAllStory } from '../../../StoryPage/storySlice';
+import './Story.scss';
 const Story = () => {
     const { getAllStory } = useContext(storyContext);
     const [loading, setLoading] = useState(false);
@@ -36,7 +36,6 @@ const Story = () => {
             true
         );
     }, []);
-
     return (
         <div className='story'>
             <div className='story__inner'>

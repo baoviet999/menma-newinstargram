@@ -1,4 +1,4 @@
-@use '../../scss/' as * ;
+@use '../../scss/' as *;
 .story-page {
     position: fixed;
     inset: 0;
@@ -8,6 +8,9 @@
     justify-content: center;
     padding: 10px;
     height: 100vh;
+    @include mobile {
+        padding: 0;
+    }
     &__btn {
         position: absolute;
         top: 50%;
@@ -21,13 +24,27 @@
         background-color: rgba(255, 255, 255, 0.3);
         transition: background 0.2s ease-in-out;
         cursor: pointer;
+        z-index: 1000;
         &--left {
             left: -40px;
             transform: translateY(-50%) rotate(180deg);
+            @include mobile {
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                background-color: #fff;
+            }
         }
         &--right {
             right: -40px;
+            @include mobile {
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                background-color: #fff;
+            }
         }
+
         & > svg {
             width: 60%;
             height: 60%;
@@ -41,8 +58,8 @@
         position: relative;
         border-radius: 13px;
         @include menma {
-            width: 80%;
-            height: 90%;
+            width: 100%;
+            height: 100%;
         }
         &:hover {
             .story-page__btn {
@@ -136,12 +153,20 @@
         position: absolute;
         top: 17px;
         left: 17px;
+        @include mobile {
+            top: unset;
+            bottom: 17px !important;
+        }
     }
     &__close {
         position: absolute;
         top: 17px;
         right: 17px;
         cursor: pointer;
+        @include mobile {
+            top: unset;
+            bottom: 17px !important;
+        }
     }
 }
 

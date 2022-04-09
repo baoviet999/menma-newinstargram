@@ -83,8 +83,9 @@
     }
     &__desc {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 4px;
+        max-width: 100%;
         & > span {
             font-size: 14px;
             line-height: 18px;
@@ -97,6 +98,15 @@
             line-height: 18px;
             margin-left: 4px;
             font-weight: 400;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+            @include mobile{
+                width: 70%;
+            }
+            
         }
     }
     &__totalcomment {
@@ -148,14 +158,13 @@
             padding: 8px 0;
             font-size: 14px;
             font-weight: 500;
-            color :$secondary-blue;
+            color: $secondary-blue;
             cursor: pointer;
             opacity: 0.5;
-            background-color:  transparent;
-            &.active{
+            background-color: transparent;
+            &.active {
                 opacity: 1;
             }
         }
-
     }
 }
